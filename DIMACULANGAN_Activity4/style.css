@@ -1,0 +1,70 @@
+/* ===FONTS LICENSED UNDER GPL (iirc)=== */
+@font-face {
+    font-family: "Hack";
+    src: url(ttf/Hack-Regular.ttf);
+}
+
+@font-face {
+    font-family: "Hack";
+    src: url(ttf/Hack-Bold.ttf);
+    font-weight: bold;
+}
+
+@font-face {
+    font-family: "Hack";
+    src: url(ttf/Hack-Italic.ttf);
+    font-style: italic;
+}
+
+/* Anyway, the actual css: */
+body {
+    background-color: #060e19;
+    color: #c7d4e5;
+    font-family: "Hack";
+}
+
+nav {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 8pt;
+    margin: 0px auto;
+}
+
+nav a {
+    display: inline;
+    text-decoration: none;
+    background-color: #a0acbd;
+    color: #060e19;
+    font-size: 20pt;
+    padding: 4pt 8pt;
+    margin: 0px 4pt;
+    border-radius: 4pt;
+}
+    
+#container {
+    display: grid;
+    padding: 8pt;
+}
+
+#logo {
+    grid-column: 1;
+    border-right: 8px solid #2c3644;
+    margin-right: 50px;
+    height: 80%;
+}
+
+#logo img {
+    display: block;
+    margin: auto;
+    padding-top: 10%;
+    width: 40%;
+    height: auto;
+}
+
+#content {
+    grid-column-start: 2;
+    grid-column-end: 3;
+    text-align: left;
+    font-size: 60pt;
+}

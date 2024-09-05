@@ -1,0 +1,57 @@
+body {
+    font-family: sans-serif;
+    background-color: rgb(40.04, 40.04, 40.04);
+    padding: 2%;
+    color: #99ffff;
+}
+
+#navbar {
+    float: left;
+    background-color: #020202;
+    text-align: left;
+}
+
+#navbar ul {
+    list-style-type: none;
+    padding: 4pt 16pt;
+}
+
+#navbar li {
+    margin: 8pt auto;
+}
+
+#navbar a {
+    text-decoration: none;
+    color: #99ffff;
+    font-style: bold;
+    font-size: 18pt;
+}
+
+#navbar #home {
+    font-size: 24pt;
+}
+
+#home-header {
+    background-color: #99ffff;
+    color: #003333;
+    text-align: center;
+    padding: 16pt;
+}
+
+#home-header h1 {
+    font-size: 48pt;
+    margin: 8pt;
+}
+
+#home-header h2 {
+    font-size: 24pt;
+    margin: 8pt;
+}
+
+.content {
+    background-color: rgb(68.09, 68.09, 68.09);
+    padding: 5%;
+
+    font-size: 16pt;
+    text-align: justify;
+}

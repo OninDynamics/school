@@ -1,0 +1,29 @@
+body {
+    background-color: #020202;
+    font-family: "Sans Serif";
+    color: #FBFBFF;
+}
+
+nav {
+    margin: 24px auto;
+    padding: 4px;
+    border-radius: 4px;
+    align: center;
+}
+
+nav a {
+    align:center;
+    margin: auto;
+    background-color: #2FEFFA;
+    color: #020202;
+    margin: 4px;
+    padding: 8px 16px;
+    border-radius: 4px;
+}
+
+#frontpage {
+    align:center;
+    background-color: #0F0F0F;
+    margin: auto 20%;
+}
+
