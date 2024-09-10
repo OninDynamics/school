@@ -1,0 +1,78 @@
+@import url('https://fonts.googleapis.com/css2?family=SUSE:wght@100..800&display=swap');
+/* ty google fonts */
+
+body {
+    background-color: oklch(13.2% 0.032 56.07);
+    font-family: "SUSE", sans-serif;
+    font-optical-sizing: auto;
+    font-weight: 300;
+    color: oklch(95% 0 0);
+    font-size: 24px;
+}
+
+body hr {
+    width: 50%;
+}
+
+body h3 {
+    margin: 8px auto;
+}
+
+header {
+    margin: 50px auto 0px;
+    font-size: 20px;
+    text-align: center;
+}
+
+header img {
+    display: block;
+    width: 50%;
+    margin: auto;
+    padding-top: 40px;
+}
+
+nav {
+    background-color: oklch(29.4% 0.032 56.07);
+    display: grid;
+    position: sticky;
+    top: 4px;
+    width: 50%;
+    padding: 8px;
+    margin: 8px auto;
+    border-radius: 22px;
+}
+
+nav a {
+    text-decoration: none;
+    text-align: center;
+    background-color: oklch(95% 0 0);
+    border-radius: 8px;
+    margin: 8px;
+    padding: 8px;
+    color: oklch(13.2% 0.032 56.07);
+    grid-row: 1;
+}
+
+section {
+    background-color: oklch(29.4% 0.032 56.07);
+    border-radius: 16px;
+    width: 80%;
+    margin: 16px auto;
+    padding: 16px 16px 16px 30px ;
+}
+
+section img {
+    height: 160px;
+    border-radius: 8px;
+    margin: 8px;
+    float: right;
+}
+
+footer {
+    background-color: #020202;
+    color: okhsl(95% 0 0);
+    margin: 0px;
+    padding: 8px;
+    text-align: center;
+    font-size: 16px;
+}
