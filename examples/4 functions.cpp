@@ -29,10 +29,10 @@ int main() {    // This is the "main function". Every program starts here.
     /* This function is defined in <cmath>. Because <cmath> is inside the "std"
      * namespace, we must access it via the namespace access operator: "::". */
 
-    int num = std::sqrt(4);    // Assigns the result of sqrt(4) to variable "num".
+    int num = std::sqrt(36);    // Assigns the result of sqrt(36) to variable "num".
 
     /* ^This is equivalent to :
-     * int num = 2; */
+     * int num = 6; */
 
     /* In line 5, we defined the function "isBiggerThanFive()".
      * We'll call it here: */
@@ -46,6 +46,21 @@ int main() {    // This is the "main function". Every program starts here.
     /* Functions can also be used in expressions: */
     std::cout << "The square root of 16 is: " << sqrt(16) << "!\n";
 
+    /* Let's call thisIsAFunction() */
+    thisIsAFunction();
+    /* This *might* compile, but it won't run. This is because the compiler
+     * doesn't know what thisIsAFunction() would even do. Let's define that
+     * after the main() function... */
+
     return 0;
 }
 
+/* Now, let's define what thisIsAFunction() would do: */
+void thisIsAFunction() {
+    std::cout << "thisIsAFunction() was called, helloo--\n";
+}
+
+/* Try running all this in programiz or something idk
+ * unless you're Jade, Jade got me to install a compiler in
+ * her laptop
+ * There's also... nvm i forgot his name im so sorry bro */
