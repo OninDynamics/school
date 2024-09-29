@@ -1,0 +1,35 @@
+body {
+    background-color: #020202;
+    font-family: sans-serif;
+}
+
+nav {
+    background-color: #202020;
+
+    margin: 0pt auto;
+    padding: 8pt;
+
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    justify-content: center;
+}
+
+nav a {
+    flex-grow: 1;
+    margin: auto;
+    padding: 8pt;
+
+    text-decoration: none;
+    text-align: center;
+    font-size: 16pt;
+
+    color: #FAFAFA;
+
+    border-radius: 4pt;
+}
+
+nav img {
+    display: block;
+    width: 50%;
+}
