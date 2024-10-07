@@ -1,18 +1,17 @@
-use tokio_postgres::{NoTls, Client, Connection, Error};
+use tokio_postgres::{NoTls, Client, Error};
 use std::result::Result;
 
-async fn connect() -> Result<(Client, Connection), Error> {
+async fn connect(cfg: &str) -> Result<Client, Error> {
     let (client, conn) = { tokio_postgres::connect(
-            "host=localhost user=client dbname=skibidi"
+            cfg
             , NoTls)
             .await? };
 
     tokio::spawn(async move {
         if let Err(e) = conn.await {
             eprintln!("PSQL Error: {}", e);
-            Erro
         }
     });
 
-    Ok((client, conn))
+    Ok(client)
 }

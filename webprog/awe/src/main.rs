@@ -1,11 +1,17 @@
 mod db;
 mod ssr;
 
-#[tokio::main]
-async fn main() -> Result<(), i32> {
+use std::sync::Arc;
 
+#[tokio::main]
+async fn main() {
+
+    const db_cfg: &str = "host=localhost user=client dbname=skibidi";
     println!("AWE Prototype Website is starting...");
 
-    let (sqlclient, sqlconn) = db::connect()
-    Ok(())
+    let tera = Arc::new(
+        tera::Tera::new("tmpl/**/*").expect("Tera failed to initialize"),
+    );
+
+
 }
