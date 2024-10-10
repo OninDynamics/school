@@ -1,5 +1,10 @@
+// extern crate tera;
+
+mod ssr;
+use ssr::serve;
 use std::error::Error;
-use sqlx::Row;
+// use tera::Tera;
+use axum::{Router, routing::get};
 
 #[tokio::main]
 async fn main() -> Result<(), Box<dyn Error>>{
@@ -8,12 +13,22 @@ async fn main() -> Result<(), Box<dyn Error>>{
 
     sqlx::migrate!("./migrations").run(&psql_pool).await?;
 
-    let testq = sqlx::query("SELECT 1 + 1 as sum")
-        .fetch_one(&psql_pool)
-        .await?;
+    /*
+    let templater = match Tera::new("../htm/**/*") {
+        Ok(t) => t,
+        Err(e) => {
+            eprintln!("Tera Parsing Error: {}", e);
+            std::process::exit(1);
+        }
+    };
+    */
 
-    let testsum: i32 = testq.get("sum");
-    println!("{}", testsum);
+    let app: Router<> = Router::new()
+        .route("/", get(serve)
+            );
+
+    let listener = tokio::net::TcpListener::bind("127.0.0.1:8888").await.unwrap();
+    axum::serve(listener, app).await.unwrap();
 
     Ok(())
 }

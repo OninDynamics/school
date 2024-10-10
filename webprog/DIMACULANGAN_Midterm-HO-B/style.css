@@ -1,0 +1,116 @@
+/* vomit list of css rulesets */
+
+/* GLOBAL */
+body {
+    background-color: #020202;
+    color: #FDFDFD;
+
+    font-family: sans-serif;
+}
+
+a {
+    color: #5A5AFA;
+    text-decoration: none;
+}
+
+/* HEADER */
+header {
+    background-color: #201A15;
+
+    margin: 8px 25%;
+    padding: 8px 8px 32px;
+
+    border-radius: 8px;
+
+    text-align: center;
+}
+
+header h1 {
+    margin: 8px;
+    font-size: 60px;
+}
+
+header hr {
+    width: 50%;
+    margin: 8px auto 24px;
+}
+
+nav {
+    margin: auto;
+}
+
+nav a {
+    background-color: #5A5AFA;
+    color: #101010;
+
+    margin: 2px;
+    padding: 8px;
+
+    border-radius: 8px;
+}
+
+/* CONTENT */
+#content {
+    background-color: #201A15;
+    border-radius: 8px;
+    
+    margin: 8px 25%;
+    padding: 8px;
+}
+
+#content h2 {
+    text-align: center;
+}
+
+#content hr {
+    width: 80%;
+}
+
+section {
+    background-color: #2F221A;
+    border-radius: 4px;
+    margin: 8px;
+    padding: 8px;
+}
+
+section h4 {
+    text-align: center;
+    font-size: 24px;
+}
+
+section p {
+    margin: 16px;
+}
+
+section img {
+    display: block;
+    width: 60%;
+    margin: 1em auto;
+    border-radius: 8px;
+}
+
+section ul {
+    display: block;
+    margin: auto;
+    padding: 8px 32px;
+/*    background-color: #312F2A; */
+    border-left: 2px solid #603830;
+    width: 60%;
+}
+
+/* FOOTER */
+footer {
+    background-color: #201A15;
+    border-radius: 8px;
+    
+    margin: 8px 25%;
+    padding: 8px;
+}
+
+footer p {
+    text-align: center;
+}
+
+p code {
+    padding: 4px;
+}

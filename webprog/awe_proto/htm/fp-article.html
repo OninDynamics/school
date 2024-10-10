@@ -1,0 +1,17 @@
+<!-- TEMPLATE:
+    Article posts. -->
+
+<div class="post">
+
+    <h3>{{post.title}}</h3>
+
+    <p class="date">{{post.timestamptz}}</p>
+
+    <p>
+        {{post.content.abridged}}
+        <a href={{post.article_link}}>
+            See More
+        </a>
+    </p>
+
+</div>
