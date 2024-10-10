@@ -21,7 +21,7 @@ async fn main() -> Result<(), Box<dyn Error>>{
     };
 
     let app: Router<> = Router::new()
-        .route("/", get(ssr::serve(tera, psql_pool.acquire()))
+        .route("/", get(ssr::serve(tera, psql_pool.acquire().await))
             );
 
     let listener = tokio::net::TcpListener::bind("127.0.0.1:8888").await.unwrap();
