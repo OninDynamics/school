@@ -3,15 +3,17 @@
 
 <div class="post">
 
-    <h3>{{post.title}}</h3>
+    <h3>{{title}}, by {{author}}</h3>
 
-    <p class="date">{{post.timestamptz}}</p>
+    <p class="date">{{ts}}</p>
 
     <p>
-        {{post.content.abridged}}
-        <a href={{post.article_link}}>
-            See More
-        </a>
+        {{content}}
+        <!--
+            <a href=>
+                See More
+            </a>
+        -->
     </p>
 
 </div>

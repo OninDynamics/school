@@ -1,39 +1,46 @@
 use std::string::String;
-use std::option::Option;
+use askama_axum::Template;
 use sqlx::Row;
-use serde::Serialize;
-use tera::{Tera, Context};
-use axum::response::Html;
 
-#[derive(Serialize)]
+#[derive(Template)]
+#[template(path="master.html")]
+struct Master {
+    articles: String,
+}
+
+#[derive(Template)]
+#[template(path="fp-article.html")]
 struct Article {
     title: String,
-    author: Option<String>,
-    ts: Option<String>,
+    author: String,
+    ts: String,
     content: String
 }
 
-pub async fn serve(tera: Tera, pgconn: &sqlx::PgPool)  -> Html<String> {
+async fn index() -> impl axum::response::IntoResponse {
     let sql_post = sqlx::query(
         "SELECT * FROM posts;")
-        .fetch_one(pgconn)
-        .await.unwrap();
+        .fetch_one(sql_state.db_pool)
+        .await.expect("Smegma Balls");
 
-    let post = Article{
+    Article {
         title: sql_post.get("title"),
         author: match sql_post.try_get("author") {
-            Ok(T) => T,
-            Err(E) => None,
+            Ok(t) => t,
+            Err(..) => "".to_string(),
         },
         ts: match sql_post.try_get("ts") {
-            Ok(T) => T,
-            Err(E) => None,
+            Ok(t) => t,
+            Err(..) => "".to_string(),
         },
         content: sql_post.get("content"),
-    };
-    
-    match tera.render("article.html", &Context::from_serialize(&post)) {
-        Ok(T) => Html(T),
-        Err(E) => Html("Tera Serialization Error {E}".to_string()),
     }
+
+    /*
+    let page = Master {
+    };
+    */
+
+    // post.render().expect("Askama Render Panic!")
+    // page.render().expect("Askama Render Panic: Master")
 }
