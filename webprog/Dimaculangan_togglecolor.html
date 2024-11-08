@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Simple Color Switcher</title>
+    <style>
+        /* Basic CSS for styling */
+        body {
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            font-family: Arial, sans-serif;
+            transition: background-color 0.1s;
+            background-color: white;
+        }
+
+        p {
+            transition: opacity 1s;
+            opacity: 0;
+        }
+
+        h1 {
+            color: #333;
+        }
+
+        button {
+            padding: 10px 20px;
+            font-size: 16px;
+            cursor: pointer;
+            transition: background-color 0.1s;
+            background-color: aqua;
+            color: #000000;
+            border: none;
+            border-radius: 5px;
+            margin-top: 20px;
+        }
+    </style>
+</head>
+<body>
+    <p id="counter">(why'd you highlight me?)</p>
+    <h1>Click the button to switch colors!</h1>
+    <button onclick="toggleColor()" id="switcher">Switch Color</button>
+    <button onclick="reset()" id="reset">Reset Counter</button>
+
+    <script>
+        let count = 0;
+
+        function reset() {
+            let counter = document.getElementById("counter");
+            count = 0;
+            counter.innerHTML = "Resetting...";
+            counter.style.opacity = 0;
+        }
+
+        function increment() {
+            let counter = document.getElementById("counter");
+            count++;
+            counter.innerHTML = `You clicked ${count} time(s).`;
+            counter.style.opacity = 1;
+        }
+
+        function toggleColor() {
+            if (document.body.style.backgroundColor === 'aqua') {
+                document.body.style.backgroundColor = 'white';
+            } else {
+                document.body.style.backgroundColor = 'aqua';
+            }
+
+            // Surely there's a better way to change for each button e.g. a foreach()
+            if (document.getElementById("switcher").style.backgroundColor === 'white') {
+                document.getElementById("switcher").style.backgroundColor = 'aqua';
+            } else {
+                document.getElementById("switcher").style.backgroundColor = 'white';
+            }
+
+            if (document.getElementById("reset").style.backgroundColor === 'white') {
+                document.getElementById("reset").style.backgroundColor = 'aqua';
+            } else {
+                document.getElementById("reset").style.backgroundColor = 'white';
+            }
+
+            increment()
+        }
+    </script>
+</body>
+</html>
