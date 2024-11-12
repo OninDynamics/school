@@ -1,0 +1,205 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible=IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Simple To-Do List App</title>
+    <style>
+        /* Basic styling for the app */
+        body {
+            font-family: Arial, sans-serif;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            margin: 0;
+            background-color: #00004d;
+        }
+
+        .container {
+            background-color: #ffffff;
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            width: 300px;
+            text-align: center;
+        }
+
+        input {
+            width: 70%;
+            padding: 10px;
+            margin-bottom: 10px;
+            border: 1px solid #ddd;
+            border-radius: 5px;
+        }
+
+        button {
+            padding: 10px 20px;
+            border: none;
+            border-radius: 5px;
+            background-color: #0000FF;
+            color: #ffffff;
+            cursor: pointer;
+        }
+
+        button:hover {
+            background-color: #00004d;
+        }
+
+        ul {
+            list-style-type: none;
+            padding: 0;
+        }
+
+        li {
+            background-color: #f9f9f9;
+            margin: 5px 0;
+            padding: 10px;
+            border-radius: 5px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        li.completed {
+            background-color: #AAFFAA;
+            color: #777;
+        }
+
+        li p {
+            visibility: hidden;
+        }
+
+        p.completed {
+            visibility: visible;
+        }
+
+        .deleteBtn {
+            background-color: #dc3545;
+            color: #ffffff;
+            border: none;
+            border-radius: 3px;
+            padding: 3px 6px;
+            cursor: pointer;
+        }
+
+        .deleteBtn:hover {
+            background-color: #c82333;
+        }
+
+        #hint {
+            color: #FF4090;
+        }
+
+        #counter {
+            color: #888888;
+        }
+    </style>
+</head>
+<body>
+
+    <div class="container">
+	
+        <h1>Simple To-Do List</h1>
+        <!-- Input for entering a new task -->
+        <input type="text" id="taskInput" placeholder="Whaddya wanna do?">
+        <p id="hint"></p>
+        <!-- Button to add the task -->
+        <button id="addTaskBtn">Add Task</button>
+        <!-- List where tasks will be shown -->
+        <ul id="taskList"></ul>
+        <p id="counter">No tasks are present</p>
+    </div>
+
+    <script>
+        // Hint and Counter display elements
+        const hint = document.getElementById('hint');
+        const counter = document.getElementById('counter');
+        
+        let items = 0;
+
+        function count(num) {
+            // Add whatever parameter is input here, either 1 or -1
+            items += num;
+
+            // Update counter element
+            counter.innerHTML = items + " task(s) are present";
+            if (items == 0) {
+                counter.innerHTML = "No tasks are present";
+            }
+        }
+
+        // Add event listener to the "Add Task" button
+        document.getElementById('addTaskBtn').addEventListener('click', function() {
+        // Get the input field and task list elements
+            const taskInput = document.getElementById('taskInput');
+            const taskList = document.getElementById('taskList');
+
+            // Check if the input is not empty before adding the task
+            if (taskInput.value.trim() !== '') {
+                // State variables go here
+                let deleteConfirm = false;
+
+                count(1);
+                // Create a new list item for the task
+                const listItem = document.createElement('li');
+                const check = document.createElement('p');
+                check.textContent = "✓ "
+
+                listItem.textContent = taskInput.value;
+                listItem.appendChild(check);
+
+                // Create a delete button for each task
+                const deleteBtn = document.createElement('button');
+                deleteBtn.textContent = 'Delete';
+                deleteBtn.classList.add('deleteBtn');
+
+                // Add event listener to the delete button to remove the task
+                deleteBtn.addEventListener('click', function() {
+//                  // suuurelyy, this counts for task 5
+//                  if (deleteConfirm) {
+//                      count(-1);
+//                      taskList.removeChild(listItem);
+//                  } else {
+//                      deleteBtn.textContent = "Are you sure?";
+//                      deleteConfirm = true;
+//
+//                      // If user doesn't click again, revert to previous state
+//                      setTimeout(function() {
+//                          deleteConfirm = false;
+//                          deleteBtn.textContent = "Delete";
+//                      }, 2000)
+//                  }
+
+                    if (confirm(`Delete item \"${listItem.textContent.replace('Delete','')}\"?`)) {
+                        taskList.removeChild(listItem);
+                    }
+                });
+
+                // Add the delete button to the list item
+                listItem.appendChild(deleteBtn);
+
+                // Add event listener to mark a task as completed when clicked
+                listItem.addEventListener('click', function() {
+                    listItem.classList.toggle('completed');
+                    check.classList.toggle('completed');
+                });
+
+                // Add the list item to the task list
+                taskList.appendChild(listItem);
+
+                // Clear the input field for the next task
+                taskInput.value = '';
+
+                // Hide notif for entering task
+                hint.innerHTML = "";
+
+            } else {
+                // Scream at the user
+                hint.innerHTML = "Please enter a task.";
+            }
+        });
+    </script>
+</body>
+</html>
