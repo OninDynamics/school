@@ -1,3 +1,40 @@
+/* Library Manager, version negative 2 billion (i'll never release this abomination)
+ * Written by Dimaculangan, Gionne Niño
+ * With help from Almazan, Christian Lesbert
+ *
+ * Commands are implemented via the Action enum, allowing a defined set of
+ * possible actions the user can do.
+ *
+ * Main input loop is found in main(). main() uses a switch to call different
+ * functions based on user input. The switch itself is driven by parse(), a
+ * function that takes a character and returns an Action enum.
+ *
+ * Books are defined by the struct BookMetaData.
+ *
+ * The main "dAtAbAsE" is stored in book_db. It's declared in main() as a
+ * vector of BookMetadata's. All functions involving book_db take a reference
+ * to a std::vector<BookMetadata> as its argument. This preserves memory even
+ * when functions like listBooks() don't mutate book_db. However, I'm pretty
+ * sure gcc knows when to automagically optimize for that kinda stuff. If not,
+ * then I guess I'm spoiled by the concepts of Haskell and Rust.
+ *
+ * (Sorry, I like how Rust calls their enum members waa)
+ * Action::list calls listBooks(), which iterates through book_db and displays
+ * the contents of each BookMetadata entry.
+ * Action::add calls addBook(), which lets the user interactively add entries
+ * and push them onto book_db.
+ * Action::modify calls modBook(), which lets the user choose a book from a
+ * list of entries and interactively modify the chosen entry.
+ * Action::help shows help info, and Action::quit gives the user a $20 fortnite
+ * gift card.
+ *
+ * No Action::delete because lazy
+ *
+ * A lot is to be desired for code quality, but wrestling with getline() was
+ * a bigger priority at the time. I regret not putting addBook and modBook's
+ * input code into a separate "bookEntryEditor()" or something.
+ */
+
 #include <iostream>
 #include <vector>
 #include <string>
@@ -42,7 +79,7 @@ void listBooks(vector<BookMetadata>& book_db) {
     if (book_db.empty()) {
         cout << "No books in database.\n";
     } else {
-        unsigned int book_id = 0;
+        unsigned int book_id = 0;   // Simple way of counting in a range'd loop
         cout << "\n\n";
         for (BookMetadata book : book_db) {
             cout << "=== Book " << (++book_id) << " ==="
@@ -62,8 +99,10 @@ void addBook(vector<BookMetadata>& book_db) {
     cin.ignore();
 
     BookMetadata newBook;
-    bool checked = false;
-    string buf;
+    bool checked = false;   // Just a sentinel(?) for input validation.
+                            // A "checked" value of false means input hasn't
+                            // been validated yet.
+    string buf;             // im addicted to buffers get them away from me
 
     cout << "\n[ADD] Book Name: ";
     getline(cin, newBook.name);
@@ -82,9 +121,10 @@ void addBook(vector<BookMetadata>& book_db) {
             cerr << "Integer is required: ";
             continue;
         }
-    }
+    }   // No other validation, imagine if this library contains a scroll
+        // from Ancient Sumeria or something lol
 
-    checked = false;
+    checked = false;    // Reset this so next input validation part can use it
     
     cout << "[ADD] Book Price: ";
     while (checked == false) {
@@ -103,8 +143,10 @@ void addBook(vector<BookMetadata>& book_db) {
             cerr << "Number is required: ";
             continue;
         }
-    }
+    }   // Technically currencies should be fixed-point numbers, at least an int
+        // There isn't such thing as "0.0000534 pesos"
 
+    // sanity check before the user gets dementia
     cout << "\n[ADD] Book added!"
         << "\n\tName: " << newBook.name
         << "\n\tAuthor: " << newBook.author
@@ -115,6 +157,8 @@ void addBook(vector<BookMetadata>& book_db) {
     book_db.push_back(newBook); // Add the newBook struct to book_db
 }
 
+// Function for modifying a book interactively.
+// Lists book entries then modifies a chosen entry.
 void modifyBook(vector<BookMetadata>& book_db) {
     cin.ignore();
     
@@ -141,12 +185,12 @@ void modifyBook(vector<BookMetadata>& book_db) {
             } else {
                 idIsValid = true;
             }
-        } catch (invalid_argument) {
+        } catch (invalid_argument) {    // Not a number.
             cout << "Select a number: ";
             continue;
-        } catch (out_of_range) {
+        } catch (out_of_range) {        // Out of range. Reminds user of valid range.
             cout << "Number must be between 1 and "
-                << book_db.size() - 1
+                << book_db.size()
                 << ". \nSelect a number: ";
             continue;
         }
@@ -165,7 +209,9 @@ void modifyBook(vector<BookMetadata>& book_db) {
 
     // Begin editing book
     cin.ignore();
-    bool checked = false;
+    bool checked = false;   // Just a sentinel(?) for input validation.
+                            // A "checked" value of false means input hasn't
+                            // been validated yet.
 
     cout << "\n[MOD] Book Name: ";
     getline(cin, modBook.name);
