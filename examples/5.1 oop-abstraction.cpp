@@ -19,9 +19,9 @@ public:
  *------------------------------+
  *
  * ... we just need to do this!
- *------------------------+
-cout << s1.perimeter()
- *------------------------+
+ +-------------------------+
+ | cout << s1.perimeter(); |
+ +-------------------------+
  *
  * This is the basis behind ABSTRACTION, where things are implemented in a way
  * that allows us "hide" the code away, and lets us use its functionality in
@@ -30,17 +30,17 @@ cout << s1.perimeter()
  * "wtf is abstract?"
  *
  * For example, this is not abstract (getting the tail of a linked list):
- *--------------------------------+
- * int* list_tail = list_head;    |
- * while (list_tail != nullptr) { |   (confusing, right?)
- *     list_tail = li->next;      |
- * }                              |
- *--------------------------------+
+ +--------------------------------+
+ | int* list_tail = list_head;    |
+ | while (list_tail != nullptr) { |   (confusing, right?)
+ |     list_tail = li->next;      |
+ | }                              |
+ +--------------------------------+
  *
  * However, THIS is abstract:
- *-------------------------------+
- * int* list_tail = list.tail(); |    (much easier to understand!)
- *-------------------------------+
+ +-------------------------------+
+ | int* list_tail = list.tail(); |    (much easier to understand!)
+ +-------------------------------+
  */
 
 // Okay then, let's implement a simple linked list of ints;
