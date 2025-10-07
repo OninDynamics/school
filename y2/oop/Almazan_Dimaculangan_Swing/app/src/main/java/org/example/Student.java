@@ -37,6 +37,6 @@ class Student {
 
 	@Override
 	public String toString() {
-		return "Name: " + name + ", Age: " + age + ", Course: " + course;
+		return "Name: " + name + ",\tAge: " + age + ",\tCourse: " + course;
 	}
 }
