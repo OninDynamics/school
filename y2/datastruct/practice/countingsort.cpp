@@ -4,10 +4,15 @@
 using namespace std;
 
 void sort(vector<int>& in_vec) {
+	if (in_vec.empty()) {
+		return;	// empty arrays don't need any sorting
+	}
+
+	// Declaring min and max allocates O(1) memory.
 	int min = in_vec.at(0), max = in_vec.at(0);
 
 	// Find the minimum and maximum bound.
-	// This is O(n).
+	// This takes O(n) time.
 	for (int i : in_vec) {
 		if (i < min) {
 			min = i;
@@ -18,31 +23,33 @@ void sort(vector<int>& in_vec) {
 
 	// Make a new array that will contain the amounts of
 	// each key in the input array. Init values to 0.
-	// This is O(1).
+	// This takes O(1) time, and allocates O(k) memory.
+	// This is the only allocation in the algorithm, therefore
+	// this is the algorithm's total memory complexity.
 	vector<int> distribution = vector<int>( 1 + (max - min) , 0);
 
 	// Count how many of each key is present in the array.
-	// This is O(n).
+	// This takes O(n) time.
 	for (int i : in_vec) {
 		distribution.at(i - min)++;
 	}
 
 	
-	// clear() the in_vec...
+	// clear() the input vector... (takes O(n) time.)
 	in_vec.clear();
 
 	// ...then repopulate it:
 
-	// For each index of the distribution... (O(k))
+	// For each index of the distribution... (O(k) time)
 	for (int i = min; i <= max; i++) {
 
-		// append the number distribution[i] times. (O(n))
+		// append the number distribution[i] times. (O(n) time)
 		for (int j = 0; j < distribution.at(i-min); j++) {
 			in_vec.push_back(i);
 		}
 	}
 
-	// ^ The above operation is O(n + k).
+	// ^ The above operation takes O(n + k) time. The list is now sorted.
 }
 
 // adapter for show_vec(sort()).
@@ -87,4 +94,40 @@ int main(int argc, char *argv[]) {
 	cout << "Sorted Vector:  "; show_vec(counting_sort(vec6));
 
 	cout << "\n=== Counting Sort Test finished! ===\n\n";
+}
+
+// Version used in the PPT.
+namespace onind {
+
+	void sort(vector<int>& in_vec) {
+		if (in_vec.empty()) {
+			return;
+		}
+
+		int min = in_vec.at(0), max = in_vec.at(0);
+
+		for (int i : in_vec) {
+			if (i < min) {
+				min = i;
+			} else if (i > max) {
+				max = i;
+			}
+		}
+
+		vector<int> distribution = vector<int>( 1 + (max - min) , 0);
+
+		for (int i : in_vec) {
+			distribution.at(i - min)++;
+		}
+
+		in_vec.clear();
+
+		for (int i = min; i <= max; i++) {
+
+			for (int j = 0; j < distribution.at(i-min); j++) {
+				in_vec.push_back(i);
+			}
+		}
+	}
+
 }
