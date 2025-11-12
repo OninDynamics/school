@@ -3,12 +3,12 @@
 
 using namespace std;
 
-vector<int> counting_sort(vector<int> in_arr) {
-	int min = in_arr.at(0), max = in_arr.at(0);
+void sort(vector<int>& in_vec) {
+	int min = in_vec.at(0), max = in_vec.at(0);
 
 	// Find the minimum and maximum bound.
 	// This is O(n).
-	for (int i : in_arr) {
+	for (int i : in_vec) {
 		if (i < min) {
 			min = i;
 		} else if (i > max) {
@@ -23,28 +23,32 @@ vector<int> counting_sort(vector<int> in_arr) {
 
 	// Count how many of each key is present in the array.
 	// This is O(n).
-	for (int i : in_arr) {
+	for (int i : in_vec) {
 		distribution.at(i - min)++;
 	}
 
-	// Make a new array with the same size as the input.
-	// This is O(1).
-	vector<int> sorted_arr = vector<int>();
-
-	// Populate the new array:
 	
+	// clear() the in_vec...
+	in_vec.clear();
+
+	// ...then repopulate it:
+
 	// For each index of the distribution... (O(k))
 	for (int i = min; i <= max; i++) {
 
 		// append the number distribution[i] times. (O(n))
 		for (int j = 0; j < distribution.at(i-min); j++) {
-			sorted_arr.push_back(i);
+			in_vec.push_back(i);
 		}
 	}
 
 	// ^ The above operation is O(n + k).
+}
 
-	return sorted_arr;
+// adapter for show_vec(sort()).
+vector<int>& counting_sort(vector<int>& vec) {
+	sort(vec);
+	return vec;
 }
 
 void show_vec(vector<int> vec) {
@@ -56,7 +60,7 @@ void show_vec(vector<int> vec) {
 }
 
 int main(int argc, char *argv[]) {
-	cout << "=== Counting Sort Test Suite ===\n";
+	cout << "\n=== Counting Sort Test Suite ===\n";
 
 	vector<int> vec1 = {-2, 3, 1, 5, 4};
 	cout << "\nInitial Vector: "; show_vec(vec1);
@@ -82,4 +86,5 @@ int main(int argc, char *argv[]) {
 	cout << "\nInitial Vector: "; show_vec(vec6);
 	cout << "Sorted Vector:  "; show_vec(counting_sort(vec6));
 
+	cout << "\n=== Counting Sort Test finished! ===\n\n";
 }
