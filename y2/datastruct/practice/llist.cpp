@@ -1,3 +1,4 @@
+#include "onind_collections.h"
 #include <stdexcept>
 
 namespace onind {
@@ -25,12 +26,10 @@ namespace onind {
 
 			if (index > members) {
 				throw (std::out_of_range("Index out of bounds."));
-				return nullptr;
 			}
 
 			if (members == 0 || head == nullptr) {
 				throw (std::length_error("List is empty."));
-				return nullptr;
 			}
 
 			for (unsigned int i; i < index; i++) {
@@ -40,6 +39,7 @@ namespace onind {
 					cur = cur->next;
 				}
 			}
+			throw (std::runtime_error("Undefined behavious: index()"));
 		}
 
 		/*
