@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+
+<html>
+	<head>
+		<meta charset="UTF-8" />
+		<meta name="viewport" content="width=device-width, initial-scale=1" />
+		<link rel="stylesheet" href="style.css" />
+		<title>onind</title>
+	</head>
+	<body>
+		<div id="loadingscreen">
+			<div id="loadingcontainer">
+				<img src="img/spinner.png" id="spinner" />
+				<p>
+					imagine this is a loading screen...
+					<br />
+					<noscript>
+						...if you're stuck here, please enable javascript :)
+					</noscript>
+				</p>
+			</div>
+		</div>
+
+		<div id="register_screen">
+			<div id="logo_half">
+				<img 
+					src="img/ow-register.svg"
+					id="logo"
+				/>
+			</div>
+
+			<form id="registerForm">
+
+				<label for="fname">First Name</label>
+				<input id="fname" type="text" title="First Name" placeholder="John" required />
+
+				<label for="lname">Last Name</label>
+				<input id="lname" type="text" title="Last Name" placeholder="Doe" required />
+
+				<label for="email">E-Mail Address</label>
+				<input id="email" type="text" title="EMail Address" placeholder="example@email.com" required />
+
+				<label for="password">Password</label>
+				<input id="password" type="password" title="Password" placeholder="at least 8 characters..." required />
+
+				<label for="confirmPW">Confirm Password</label>
+				<input id="confirmPW" type="password" title="Confirm Password" placeholder="as a sanity check..." required />
+
+				<input id="registerButton" type="submit" value="initializing systems..." disabled />
+
+			</form>
+		</div>
+		<script src="script.js"></script>
+	</body>
+</html>
